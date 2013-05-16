@@ -39,8 +39,8 @@ def displayIntro():
     print ('aggression and hope they don\'t kill you.')
 
 def choice1():
-    ch1 = 0
-    while ch1 == 0:
+    ch1 = '0'
+    while ch1 != '1' and ch1 != '2':
     	print ('What will you do?')
     	print ('1. Grab the gun and try to take the Metarchs out.')
     	print ('2. Just lay there and hope they don\'t kill you.')
@@ -65,15 +65,37 @@ def choice1b():
     print ('You lay on the ground not making any sudden movements with your')
     print ('body, but you keep your head facing the Metarch soldiers, hoping')
     print ('they show "mercy" by taking you prisoner.')
+    print
+    time.sleep(2)
+    print ('An older man with a short gray beard barks orders at the others')
+    print ('as he walks towards you. He draws his gun and in a rough accent')
+    print ('in the common tongue says,')
+    time.sleep(2)
+    print ('"You will tell me where the artifact is or I will shoot you!"')
+    print
+    time.sleep(2)
+
+def choice2b():
+    ch2 = '0'
+    while ch2 != '1' and ch2 != '2' and ch2 != '3':
+    	print ('What will you do?')
+    	print ('1. Don\'t say anything to him.')
+    	print ('2. Tell him where the artifact is.')
+    	print ('3. Tell him you don\'t know anything about an artifact.')
+    	ch2 = raw_input()
+    return ch2
+
+def choice
 
 def main():
     displayIntro()
     ch1 = choice1()
     print (ch1)
-    if ch1 == 1:
+    if ch1 == '1':
         choice1a()
-    elif ch1 == 2:
+    elif ch1 == '2':
         choice1b()
+        ch2 = choice2b()
         
 
 if __name__ == "__main__": main()
