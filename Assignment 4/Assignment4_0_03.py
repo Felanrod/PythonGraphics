@@ -21,6 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.up = -1
         self.down = 1
         self.speed = 1.1
+        self.slow = 1.2
         
         if not pygame.mixer:
             print("problem with sound")
@@ -51,11 +52,17 @@ class Player(pygame.sprite.Sprite):
                         self.dy = -1
                     elif self.rect.centery < mousey and self.dy <= 0:
                         self.dy = 1
-                    self.dy = self.dy * self.speed
-                    if 0.5 >= (self.rect.centery + self.dy) - mousey > 0 and -0.5 <= (self.rect.centery + self.dy) - mousey < 0:
+                    
+                    if 0.5 >= (self.rect.centery + self.dy) - mousey > 0 or -0.5 <= (self.rect.centery + self.dy) - mousey < 0:
                         self.rect.center = (50, mousey)
+                        self.dy = 0
+                    elif (self.rect.centery + (self.dy * self.speed) <= mousey + 50 and self.dy < 0) or (self.rect.centery + (self.dy * self.speed) >= mousey - 50 and self.dy > 0):
+                        if self.dy / self.slow > 1:
+                            print 'slowdown'
+                            self.dy = self.dy / self.slow
                     else:
-                        self.rect.centery += self.dy
+                        self.dy = self.dy * self.speed
+                    self.rect.centery += self.dy
         else:
             self.pause = 0
             self.dy = 0
